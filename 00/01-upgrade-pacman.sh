@@ -6,8 +6,8 @@ set -o verbose
 # 01-upgrade-pacman.sh: A very simple shell script to upgrade pacman on a new Fanatical VPS.
 # troydwill@gmail.com Jan 21, 2012
 
-# Primary reference #1: http://wiki.fanaticalvps.com/tutorial:archlinux
-# Primary reference #2: https://wiki.archlinux.org/index.php/Virtual_Private_Server
+# Primary reference: https://wiki.archlinux.org/index.php/Virtual_Private_Server
+# Secondary reference: http://wiki.fanaticalvps.com/tutorial:archlinux
 
 EDITOR='nano'
 PACMAN_CONF='/etc/pacman.conf'
@@ -25,6 +25,7 @@ pacman --sync pacman --force
 
 cp --backup --verbose ${PACMAN_CONF} /tmp
 ${EDITOR} /etc/pacman.conf.pacnew
+cp --interactive /etc/pacman.conf.pacnew /etc/pacman.conf
 pacman-db-upgrade
 pacman --sync --refresh
 
