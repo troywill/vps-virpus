@@ -1,0 +1,353 @@
+[2010-05-16 23:55] installed filesystem (2010.02-4)
+[2010-05-16 23:55] installed findutils (4.4.2-2)
+[2010-05-16 23:55] installed gawk (3.1.8-1)
+[2010-05-16 23:55] installed gdbm (1.8.3-7)
+[2010-05-16 23:55] installed gettext (0.17-4)
+[2010-05-16 23:55] installed pcre (8.02-1)
+[2010-05-16 23:55] installed grep (2.6.3-1)
+[2010-05-16 23:55] installed perl (5.10.1-5)
+[2010-05-16 23:55] installed gzip (1.4-1)
+[2010-05-16 23:55] installed texinfo (4.13a-4)
+[2010-05-16 23:55] installed groff (1.20.1-4)
+[2010-05-16 23:55] installed sed (4.2.1-2)
+[2010-05-16 23:55] installed util-linux-ng (2.17.2-2)
+[2010-05-16 23:55] installed libusb (0.1.12-4)
+[2010-05-16 23:55] installed glib2 (2.24.1-1)
+[2010-05-16 23:55] installed module-init-tools (3.11.1-2)
+[2010-05-16 23:55] installed udev (151-3)
+[2010-05-16 23:55] installed net-tools (1.60-14)
+[2010-05-16 23:55] installed kbd (1.15.2-1)
+[2010-05-16 23:55] installed sysvinit (2.86-5)
+[2010-05-16 23:55] installed initscripts (2010.05-3)
+[2010-05-16 23:55] installed iputils (20100214-2)
+[2010-05-16 23:55] installed less (436-1)
+[2010-05-16 23:55] installed xz-utils (4.999.9beta-2)
+[2010-05-16 23:55] installed openssl (1.0.0-2)
+[2010-05-16 23:55] installed expat (2.0.1-5)
+[2010-05-16 23:55] installed libarchive (2.8.3-3)
+[2010-05-16 23:55] installed libfetch (2.30-3)
+[2010-05-16 23:55] installed libgpg-error (1.7-3)
+[2010-05-16 23:55] installed libgcrypt (1.4.5-2)
+[2010-05-16 23:55] installed libnl (1.1-2)
+[2010-05-16 23:55] installed libpcap (1.1.1-1)
+[2010-05-16 23:55] installed licenses (2.6-1)
+[2010-05-16 23:55] installed popt (1.16-2)
+[2010-05-16 23:55] installed logrotate (3.7.8-1)
+[2010-05-16 23:55] installed mailx (8.1.1-7)
+[2010-05-16 20:55] it's recommended to create an initial
+[2010-05-16 20:55] database running as root:
+[2010-05-16 20:55] "/usr/bin/mandb --quiet"
+[2010-05-16 23:55] installed man-db (2.5.7-1)
+[2010-05-16 23:55] installed man-pages (3.24-1)
+[2010-05-16 20:55] mlocate command is technically locate, but slocate is symlinked and still works.
+[2010-05-16 20:55] You should run updatedb as root.
+[2010-05-16 23:55] installed mlocate (0.22.4-1)
+[2010-05-16 23:55] installed nano (2.2.4-1)
+[2010-05-16 23:55] installed pacman-mirrorlist (20100131-1)
+[2010-05-16 23:55] installed pacman (3.3.3-5)
+[2010-05-16 23:55] installed procinfo-ng (2.0.304-1)
+[2010-05-16 23:55] installed procps (3.2.8-1)
+[2010-05-16 23:55] installed psmisc (22.11-1)
+[2010-05-16 23:55] installed tcp_wrappers (7.6-11)
+[2010-05-16 23:55] installed sqlite3 (3.6.23.1-1)
+[2010-05-16 23:55] installed e2fsprogs (1.41.11-1)
+[2010-05-16 23:55] installed heimdal (1.3.2-1)
+[2010-05-16 23:55] installed openssh (5.4p1-4)
+[2010-05-16 23:55] installed sysfsutils (2.1.0-5)
+[2010-05-16 23:55] installed eventlog (0.2.9-1)
+[2010-05-16 23:55] installed syslog-ng (3.1.0-1)
+[2010-05-16 23:55] installed tar (1.23-1)
+[2010-05-16 23:55] installed vi (050325-3)
+[2010-05-16 23:55] installed vim-runtime (7.2.2150-1)
+[2010-05-16 23:55] installed gpm (1.20.6-5)
+[2010-05-16 23:55] installed vim (7.2.2150-1)
+[2010-05-16 23:55] installed wget (1.12-2)
+[2010-05-16 23:55] installed which (2.20-3)
+[2010-05-16 23:55] installed quota-tools (3.17-1)
+[2010-06-08 18:09] synchronizing package lists
+[2010-06-08 18:09] starting full system upgrade
+[2010-06-08 18:13] removed xz-utils (4.999.9beta-2)
+[2010-06-08 18:13] upgraded linux-api-headers (2.6.33.2-1 -> 2.6.34-1)
+[2010-06-08 18:13] warning: /etc/locale.gen installed as /etc/locale.gen.pacnew
+[2010-06-08 18:13] Generating locales...
+[2010-06-08 18:13]   en_US.UTF-8... done
+[2010-06-08 18:13]   en_US.ISO-8859-1... done
+[2010-06-08 18:13] Generation complete.
+[2010-06-08 18:13] upgraded glibc (2.11.1-3 -> 2.12-2)
+[2010-06-08 18:13] upgraded bash (4.1.005-1 -> 4.1.007-1)
+[2010-06-08 18:13] upgraded zlib (1.2.5-1 -> 1.2.5-2)
+[2010-06-08 18:13] upgraded binutils (2.20.1-2 -> 2.20.1-3)
+[2010-06-08 18:13] upgraded dash (0.5.5.1-2 -> 0.5.6-1)
+[2010-06-08 18:13] upgraded dialog (1.1_20100119-2 -> 1.1_20100428-1)
+[2010-06-08 18:13] upgraded e2fsprogs (1.41.11-1 -> 1.41.12-1)
+[2010-06-08 18:13] upgraded gcc-libs (4.5.0-1 -> 4.5.0-4)
+[2010-06-08 18:13] upgraded gettext (0.17-4 -> 0.18-1)
+[2010-06-08 18:13] upgraded openssl (1.0.0-2 -> 1.0.0.a-2)
+[2010-06-08 18:13] upgraded heimdal (1.3.2-1 -> 1.3.3-1)
+[2010-06-08 18:13] upgraded libfetch (2.30-3 -> 2.31-1)
+[2010-06-08 18:13] upgraded openssh (5.4p1-4 -> 5.5p1-1)
+[2010-06-08 18:13] Fixing gshadow file ...
+[2010-06-08 18:13] upgraded shadow (4.1.4.2-2 -> 4.1.4.2-3)
+[2010-06-08 18:13] upgraded syslog-ng (3.1.0-1 -> 3.1.1-1)
+[2010-06-08 18:13] upgraded tar (1.23-1 -> 1.23-3)
+[2010-06-08 18:13] upgraded vim-runtime (7.2.2150-1 -> 7.2-1)
+[2010-06-08 18:13] upgraded vim (7.2.2150-1 -> 7.2-1)
+[2010-06-08 18:13] installed xz (4.999.9beta-3)
+[2012-01-23 18:56] synchronizing package lists
+[2012-01-23 18:56] upgraded linux-api-headers (2.6.34-1 -> 3.1.6-1)
+[2012-01-23 18:56] warning: /etc/locale.gen installed as /etc/locale.gen.pacnew
+[2012-01-23 18:56] Generating locales...
+[2012-01-23 18:56]   en_US.UTF-8... done
+[2012-01-23 18:56]   en_US.ISO-8859-1... done
+[2012-01-23 18:56] Generation complete.
+[2012-01-23 18:56] upgraded glibc (2.12-2 -> 2.15-99)
+[2012-01-23 18:56] upgraded xz (4.999.9beta-3 -> 5.0.3-1)
+[2012-01-23 18:56] upgraded libarchive (2.8.3-3 -> 3.0.3-2)
+[2012-01-23 18:56] installed run-parts (4.0.4-1)
+[2012-01-23 18:56] installed ca-certificates (20111211-1)
+[2012-01-23 18:56] installed libssh2 (1.3.0-1)
+[2012-01-23 18:56] installed curl (7.23.1-2)
+[2012-01-23 18:56] installed pth (2.0.7-4)
+[2012-01-23 18:56] installed libsasl (2.1.23-9)
+[2012-01-23 18:56] installed libldap (2.4.28-2)
+[2012-01-23 18:56] installed libusb-compat (0.1.3-2)
+[2012-01-23 18:56] installed gnupg (1.4.11-3)
+[2012-01-23 18:56] installed libksba (1.2.0-1)
+[2012-01-23 18:56] installed libassuan (2.0.3-1)
+[2012-01-23 18:56] installed pinentry (0.8.1-3)
+[2012-01-23 18:56] installed dirmngr (1.1.0-3)
+[2012-01-23 18:56] installed gnupg2 (2.0.18-1)
+[2012-01-23 18:56] installed gpgme (1.3.1-2)
+[2012-01-23 18:56] warning: /etc/pacman.conf installed as /etc/pacman.conf.pacnew
+[2012-01-23 18:56] >>> The pacman database format has changed as of pacman 3.5.0.
+[2012-01-23 18:56] >>> You will need to run `pacman-db-upgrade` as root.
+[2012-01-23 18:56] >>>
+[2012-01-23 18:56]  >>> Run `pacman-key --init` to set up your pacman keyring.
+[2012-01-23 18:56] upgraded pacman (3.3.3-5 -> 4.0.1-4)
+[2012-01-23 18:57] Running 'pacman --sync --refresh'
+[2012-01-23 18:57] synchronizing package lists
+[2012-01-23 18:57] Running 'pacman --sync git'
+[2012-01-23 18:57] upgraded perl (5.10.1-5 -> 5.14.2-7)
+[2012-01-23 18:57] installed perl-error (0.17016-2)
+[2012-01-23 18:57] installed git (1.7.8.4-1)
+[2012-01-23 19:00] Running 'pacman --sync --sysupgrade'
+[2012-01-23 19:00] starting full system upgrade
+[2012-01-23 19:01] Running 'pacman --sync --sysupgrade'
+[2012-01-23 19:01] starting full system upgrade
+[2012-01-23 19:01] Running 'pacman --sync --sysupgrade'
+[2012-01-23 19:01] starting full system upgrade
+[2012-01-23 19:02] Running 'pacman --sync --force filesystem'
+[2012-01-23 19:02] installed iana-etc (2.30-2)
+[2012-01-23 19:02] warning: /etc/hosts installed as /etc/hosts.pacnew
+[2012-01-23 19:02] warning: /etc/gshadow installed as /etc/gshadow.pacnew
+[2012-01-23 19:02] warning: /etc/shadow installed as /etc/shadow.pacnew
+[2012-01-23 19:02] upgraded filesystem (2010.02-4 -> 2011.12-2)
+[2012-01-23 19:02] Running 'pacman --sync --sysupgrade'
+[2012-01-23 19:02] starting full system upgrade
+[2012-01-23 19:04] Running 'pacman --sync --sysupgrade'
+[2012-01-23 19:04] starting full system upgrade
+[2012-01-23 19:05] Running 'pacman --sync --sysupgrade'
+[2012-01-23 19:05] starting full system upgrade
+[2012-01-23 19:05] removed util-linux-ng (2.17.2-2)
+[2012-01-23 19:05] removed heimdal (1.3.3-1)
+[2012-01-23 19:05] removed module-init-tools (3.11.1-2)
+[2012-01-23 19:05] removed mailx (8.1.1-7)
+[2012-01-23 19:05] upgraded attr (2.4.44-1 -> 2.4.46-1)
+[2012-01-23 19:05] upgraded acl (2.2.49-1 -> 2.2.51-1)
+[2012-01-23 19:05] upgraded ncurses (5.7-3 -> 5.9-2)
+[2012-01-23 19:05] upgraded readline (6.1.002-1 -> 6.2.002-1)
+[2012-01-23 19:05] warning: /etc/bash.bashrc installed as /etc/bash.bashrc.pacnew
+[2012-01-23 19:05] upgraded bash (4.1.007-1 -> 4.2.020-1)
+[2012-01-23 19:05] upgraded zlib (1.2.5-2 -> 1.2.5-4)
+[2012-01-23 19:05] upgraded binutils (2.20.1-3 -> 2.22-4)
+[2012-01-23 19:05] upgraded bzip2 (1.0.5-5 -> 1.0.6-3)
+[2012-01-23 19:05] upgraded gcc-libs (4.5.0-4 -> 4.6.2-5)
+[2012-01-23 19:05]  >> Major version update. Consider running db_upgrade on Berkeley DB databases.
+[2012-01-23 19:05] upgraded db (4.8.26-2 -> 5.3.15-1)
+[2012-01-23 19:05] upgraded cracklib (2.8.16-1 -> 2.8.18-2)
+[2012-01-23 19:05] installed libgssglue (0.3-1)
+[2012-01-23 19:05] installed libtirpc (0.2.2-2)
+[2012-01-23 19:05] upgraded pam (1.1.1-1 -> 1.1.5-2)
+[2012-01-23 19:05] ==> Warning: /etc/group or /etc/gshadow are inconsistant.
+[2012-01-23 19:05]     Run 'grpck' to correct this.
+[2012-01-23 19:05] upgraded shadow (4.1.4.2-3 -> 4.1.4.3-5)
+[2012-01-23 19:05] upgraded gmp (5.0.1-1 -> 5.0.2-3)
+[2012-01-23 19:05] upgraded libcap (2.19-1 -> 2.22-2)
+[2012-01-23 19:05] upgraded coreutils (8.5-1 -> 8.15-1)
+[2012-01-23 19:05] upgraded dash (0.5.6-1 -> 0.5.7-2)
+[2012-01-23 19:05] upgraded dcron (4.4-2 -> 4.5-2)
+[2012-01-23 19:05] upgraded dhcpcd (5.2.2-1 -> 5.2.12-4)
+[2012-01-23 19:05] upgraded dialog (1.1_20100428-1 -> 1.1_20111020-1)
+[2012-01-23 19:05] upgraded diffutils (3.0-1 -> 3.2-1)
+[2012-01-23 19:05] installed util-linux (2.20.1-2)
+[2012-01-23 19:05] upgraded e2fsprogs (1.41.12-1 -> 1.41.14-2)
+[2012-01-23 19:05] upgraded eventlog (0.2.9-1 -> 0.2.12-3)
+[2012-01-23 19:05] upgraded expat (2.0.1-5 -> 2.0.1-7)
+[2012-01-23 19:05] upgraded file (5.04-2 -> 5.10-1)
+[2012-01-23 19:05] upgraded findutils (4.4.2-2 -> 4.4.2-4)
+[2012-01-23 19:05] upgraded gawk (3.1.8-1 -> 4.0.0-2)
+[2012-01-23 19:05] upgraded gdbm (1.8.3-7 -> 1.10-1)
+[2012-01-23 19:05] upgraded pcre (8.02-1 -> 8.21-1)
+[2012-01-23 19:05] installed libffi (3.0.10-1)
+[2012-01-23 19:05] upgraded glib2 (2.24.1-1 -> 2.30.2-1)
+[2012-01-23 19:05] upgraded gettext (0.18-1 -> 0.18.1.1-4)
+[2012-01-23 19:05] upgraded gpm (1.20.6-5 -> 1.20.6-7)
+[2012-01-23 19:05] upgraded grep (2.6.3-1 -> 2.10-1)
+[2012-01-23 19:05] upgraded gzip (1.4-1 -> 1.4-4)
+[2012-01-23 19:05] upgraded texinfo (4.13a-4 -> 4.13a-7)
+[2012-01-23 19:05] upgraded groff (1.20.1-4 -> 1.21-2)
+[2012-01-23 19:05] installed keyutils (1.5.5-1)
+[2012-01-23 19:05] installed krb5 (1.9.2-2)
+[2012-01-23 19:05] installed kmod (4-1)
+[2012-01-23 19:05] installed pciutils (3.1.8-1)
+[2012-01-23 19:05] upgraded libusb (0.1.12-4 -> 1.0.8-2)
+[2012-01-23 19:05] installed usbutils (004-1)
+[2012-01-23 19:05] ATTENTION UDEV:
+[2012-01-23 19:05] ----------
+[2012-01-23 19:05] Kernel 2.6.32 or newer is now required.
+[2012-01-23 19:05]   --
+[2012-01-23 19:05] OSS emulation modules are not loaded by default, add to rc.conf if needed.
+[2012-01-23 19:05]   --
+[2012-01-23 19:05] Arch specific cd symlinks are now no longer created.
+[2012-01-23 19:05]   --
+[2012-01-23 19:05] cd and net persistent rules will no longer be autogenerated,
+[2012-01-23 19:05] see <https://wiki.archlinux.org/index.php/Udev> for details.
+[2012-01-23 19:05]   --
+[2012-01-23 19:05] Errors are now logged (possibly to the console) by default.
+[2012-01-23 19:05]   --
+[2012-01-23 19:05] Arch's custom blacklisting logic has been removed. MOD_AUTOLOAD and
+[2012-01-23 19:05] blacklisting in MODULES no longer works.
+[2012-01-23 19:05] See 'man modprobe.conf' for a replacement to blacklisting.
+[2012-01-23 19:05] To disable a module mod1 on the kernel command line, use
+[2012-01-23 19:05] mod1.disable=1
+[2012-01-23 19:05] or
+[2012-01-23 19:05] modprobe.blacklist=mod1
+[2012-01-23 19:05]   --
+[2012-01-23 19:05] The following modules are no longer unconditionally loaded:
+[2012-01-23 19:05]   pcspkr irtty-sir analog lp ppdev ide-generic
+[2012-01-23 19:05] Add them to MODULES in rc.conf if you need them.
+[2012-01-23 19:05]   --
+[2012-01-23 19:05] Blacklisting of framebuffer devices has moved from /etc/modprobe.d to
+[2012-01-23 19:05] /lib/modprobe.d. Any customizations shoud be done to the file in /etc, as it
+[2012-01-23 19:05] takes precedence.
+[2012-01-23 19:05]   --
+[2012-01-23 19:05] kbd and rtc devices are no longer world readable.
+[2012-01-23 19:05]   --
+[2012-01-23 19:05] rtc is no longer in the audio group and fb devices are no longer in
+[2012-01-23 19:05] the video group, as permissions and ownership of fb devices are controlled
+[2012-01-23 19:05] by X.
+[2012-01-23 19:05]   --
+[2012-01-23 19:05] We now use upstream rules for assigning devices to the 'disk', 'optical',
+[2012-01-23 19:05] 'scanner' and 'video' groups. Beware of any changes.
+[2012-01-23 19:05]   --
+[2012-01-23 19:05] We no longer create symlinks from /dev/<dev> to /dev/<dev>0.
+[2012-01-23 19:05]   --
+[2012-01-23 19:05] For security reasons, we no longer add devices to the 'storage' group. Use
+[2012-01-23 19:05] udisks and friends, or add custom rules to /etc/udev.d/rules/, if you want
+[2012-01-23 19:05] this functionality back.
+[2012-01-23 19:05]  --
+[2012-01-23 19:05] We no longer create the static nodes on install needed for an initrd-less boot
+[2012-01-23 19:05] where devtmpfs is not mounted by the kernel, this only affects fresh installs.
+[2012-01-23 19:05]  --
+[2012-01-23 19:05] devtmpfs support is now a hard requirement. Users of the official Arch kernels
+[2012-01-23 19:05] have this enabled.
+[2012-01-23 19:05] ---------------
+[2012-01-23 19:05] upgraded udev (151-3 -> 178-1)
+[2012-01-23 19:05] installed iproute2 (3.2.0-2)
+[2012-01-23 19:05] upgraded kbd (1.15.2-1 -> 1.15.3-2)
+[2012-01-23 19:05] upgraded sysvinit (2.86-5 -> 2.88-3)
+[2012-01-23 19:05] warning: /etc/inittab installed as /etc/inittab.pacnew
+[2012-01-23 19:05] warning: /etc/rc.conf installed as /etc/rc.conf.pacnew
+[2012-01-23 19:05] Blacklisting of modules is no longer supported in rc.conf,
+[2012-01-23 19:05] please add blacklist entries to /etc/modprobe.d/ instead.
+[2012-01-23 19:05] VERBOSE= in rc.conf no longer has any effect.
+[2012-01-23 19:05] Please append 'quiet' to your kernel command line.
+[2012-01-23 19:05] If using non-bash-compatible shell, please set LANG in /etc/locale.conf,
+[2012-01-23 19:05] as LOCALE in /etc/rc.conf no longer works.
+[2012-01-23 19:05] upgraded initscripts (2010.05-3 -> 2012.01.3-1)
+[2012-01-23 19:05] upgraded openssl (1.0.0.a-2 -> 1.0.0.g-1)
+[2012-01-23 19:05] upgraded sysfsutils (2.1.0-5 -> 2.1.0-7)
+[2012-01-23 19:05] upgraded iputils (20100214-2 -> 20101006-2)
+[2012-01-23 19:05] upgraded less (436-1 -> 444-2)
+[2012-01-23 19:05] upgraded libfetch (2.31-1 -> 2.33-3)
+[2012-01-23 19:05] upgraded libgpg-error (1.7-3 -> 1.10-1)
+[2012-01-23 19:05] upgraded libgcrypt (1.4.5-2 -> 1.5.0-1)
+[2012-01-23 19:05] upgraded libnl (1.1-2 -> 1.1-3)
+[2012-01-23 19:05] upgraded libpcap (1.1.1-1 -> 1.2.1-1)
+[2012-01-23 19:05] upgraded licenses (2.6-1 -> 2.9-1)
+[2012-01-23 19:05] upgraded popt (1.16-2 -> 1.16-4)
+[2012-01-23 19:05] upgraded logrotate (3.7.8-1 -> 3.8.1-1)
+[2012-01-23 19:05] installed heirloom-mailx (12.5-3)
+[2012-01-23 19:05] installed libpipeline (1.2.0-2)
+[2012-01-23 19:05] (re)building database...
+[2012-01-23 19:05] upgraded man-db (2.5.7-1 -> 2.6.0.2-3)
+[2012-01-23 19:05] upgraded man-pages (3.24-1 -> 3.35-1)
+[2012-01-23 19:05] upgraded mlocate (0.22.4-1 -> 0.24-2)
+[2012-01-23 19:05] upgraded nano (2.2.4-1 -> 2.2.6-2)
+[2012-01-23 19:05] hostname and {,yp,nis}domainname has moved:
+[2012-01-23 19:05] ----------
+[2012-01-23 19:05] hostname is now in coreutils
+[2012-01-23 19:05] domainname is now in yp-tools
+[2012-01-23 19:05] their functionality might have changed slightly
+[2012-01-23 19:05] 
+[2012-01-23 19:05] dnsdomainname remains in net-tools
+[2012-01-23 19:05] ----------
+[2012-01-23 19:05] upgraded net-tools (1.60-14 -> 1.60.20110819cvs-3)
+[2012-01-23 19:05] installed libedit (20110802_3.0-1)
+[2012-01-23 19:05] upgraded openssh (5.5p1-1 -> 5.9p1-5)
+[2012-01-23 19:05] warning: /etc/pacman.d/mirrorlist installed as /etc/pacman.d/mirrorlist.pacnew
+[2012-01-23 19:05] upgraded pacman-mirrorlist (20100131-1 -> 20111026-1)
+[2012-01-23 19:05] upgraded procinfo-ng (2.0.304-1 -> 2.0.304-3)
+[2012-01-23 19:05] upgraded procps (3.2.8-1 -> 3.2.8-4)
+[2012-01-23 19:05] upgraded psmisc (22.11-1 -> 22.14-1)
+[2012-01-23 19:05] upgraded quota-tools (3.17-1 -> 4.00_pre1-1)
+[2012-01-23 19:05] upgraded sed (4.2.1-2 -> 4.2.1-4)
+[2012-01-23 19:05] upgraded sqlite3 (3.6.23.1-1 -> 3.7.10-1)
+[2012-01-23 19:05] upgraded syslog-ng (3.1.1-1 -> 3.3.3-1)
+[2012-01-23 19:05] upgraded tar (1.23-3 -> 1.26-2)
+[2012-01-23 19:05] upgraded tzdata (2010j-1 -> 2011n-1)
+[2012-01-23 19:05] upgraded vi (050325-3 -> 1:050325-2)
+[2012-01-23 19:05] upgraded vim-runtime (7.2-1 -> 7.3.401-1)
+[2012-01-23 19:05] upgraded vim (7.2-1 -> 7.3.401-1)
+[2012-01-23 19:05] upgraded wget (1.12-2 -> 1.13.4-1)
+[2012-01-23 19:05] upgraded which (2.20-3 -> 2.20-5)
+[2012-01-23 19:11] Running 'pacman --sync pacmatic'
+[2012-01-23 19:11] installed pacman-contrib (4.0.1-1)
+[2012-01-23 19:11] installed expac (0.07-1)
+[2012-01-23 19:11] installed pacmatic (20120121-1)
+[2012-01-23 19:12] Running 'pacman --sync --sysupgrade'
+[2012-01-23 19:12] starting full system upgrade
+[2012-01-23 19:12] Exited with code 0
+[2012-01-23 19:13] Running 'pacman --sync --sysupgrade'
+[2012-01-23 19:13] starting full system upgrade
+[2012-01-23 19:13] Exited with code 0
+[2012-01-23 19:29] Running 'pacman --sync base-devel'
+[2012-01-23 19:29] installed m4 (1.4.16-2)
+[2012-01-23 19:29] installed autoconf (2.68-2)
+[2012-01-23 19:29] installed automake (1.11.2-1)
+[2012-01-23 19:29] upgraded binutils (2.22-4 -> 2.22-4)
+[2012-01-23 19:29] installed bison (2.5-3)
+[2012-01-23 19:29] installed fakeroot (1.18.2-1)
+[2012-01-23 19:29] installed flex (2.5.35-5)
+[2012-01-23 19:29] installed mpfr (3.1.0.p3-1)
+[2012-01-23 19:29] installed libmpc (0.9-2)
+[2012-01-23 19:29] installed isl (0.07-1)
+[2012-01-23 19:29] installed cloog (0.16.3-1)
+[2012-01-23 19:29] installed ppl (0.11.2-2)
+[2012-01-23 19:29] installed gcc (4.6.2-5)
+[2012-01-23 19:29] installed libltdl (2.4.2-2)
+[2012-01-23 19:29] installed libtool (2.4.2-2)
+[2012-01-23 19:29] installed make (3.82-4)
+[2012-01-23 19:29] installed patch (2.6.1-3)
+[2012-01-23 19:29] installed pkg-config (0.26-2)
+[2012-01-23 19:30] Running 'pacman --sync libyaml'
+[2012-01-23 19:30] installed libyaml (0.1.4-1)
+[2012-01-23 19:30] Running 'pacman --sync sudo'
+[2012-01-23 19:30] installed sudo (1.8.3.p1-1)
+[2012-01-23 19:34] Running 'pacman --sync emacs-nox'
+[2012-01-23 19:34] installed dbus-core (1.4.16-1)
+[2012-01-23 19:34] installed emacs-nox (23.3-2)
+[2012-01-23 19:34] Running 'pacman --sync stow'
+[2012-01-23 19:34] installed stow (2.1.3-1)
+[2012-01-23 19:51] Running 'pacman --sync screen'
+[2012-01-23 19:51] installed screen (4.0.3-12)
