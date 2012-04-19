@@ -2,4 +2,7 @@
 * Getting an account
 - [[http://virpus.com][http://virpus.com]]
 - [[http://virpus.com/budget-vps/][http://virpus.com/budget-vps/]]
-- 
+- [ ] Hostname: e.g. server1(.yourdomain.com) [TDW - confusing, I entered shilohsystem.com]
+- [ ] NS1 Prefix: eg. ns1(.yourdomain.com) [TDW - confusing, I entered ns1]
+- [ ] NS2 Prefix: eg. ns2(.yourdomain.com) [TDW - confusing, I entered ns2]]
+- (Optional). 1 additional IP Address, I didn't choose this.

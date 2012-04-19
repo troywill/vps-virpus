@@ -1,7 +1,6 @@
 #!/bin/bash
 set -o errexit
 set -o nounset
-set -o verbose
 
 # 01-upgrade-pacman.sh: A very simple shell script to upgrade pacman on a new Fanatical VPS.
 # troydwill@gmail.com Jan 21, 2012
@@ -9,7 +8,7 @@ set -o verbose
 # Primary reference: https://wiki.archlinux.org/index.php/Virtual_Private_Server
 # Secondary reference: http://wiki.fanaticalvps.com/tutorial:archlinux
 
-EDITOR='nano'
+EDITOR='emacs'
 PACMAN_CONF='/etc/pacman.conf'
 MIRRORLIST='/etc/pacman.d/mirrorlist'
 
