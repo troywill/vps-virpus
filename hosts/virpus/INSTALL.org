@@ -1,4 +1,4 @@
-* April 19, 2011
+* April 19, 2012
 1. pacman --sync --refresh
 2. pacman --sync --pacman
 3. [root@shilohsystem ~]# pacman --sync pacman
@@ -136,3 +136,6 @@
   warning: /etc/hosts installed as /etc/hosts.pacnew
   warning: /etc/gshadow installed as /etc/gshadow.pacnew
   warning: /etc/shadow installed as /etc/shadow.pacnew
+
+* April 21, 2012
+1. [[https://myvirpus.com/clientarea.php][https://myvirpus.com/clientarea.php]]
