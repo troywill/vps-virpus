@@ -1,15 +1,33 @@
 -*- mode: org -*-
 * This README documents setting up Arch Linux on an vipus.com openvz 
 * Developer's log
-** How to make glibc
-1. [ ] install abs (pacman --sync abs)
-2. [ ] run abs ( /usr/bin/abs )
-3. [ ] copy /var/abs/glibc to a build directory
-4. [ ] change pkgrel variable in PKGBUILD
-5. [ ] change --enable-kernel flag in PKGBUILD to 2.6.18
-6. [ ] run makepkg PKGBUILD
+** How to make a glibc package
+*** Primary documentation links
+*** Steps
+1. [X] install abs (pacman --sync abs)
+2. [X] run abs ( /usr/bin/abs )
+3. [X] copy /var/abs/glibc to a build directory
+4. [X] change pkgrel variable in PKGBUILD
+5. [X] change --enable-kernel flag in PKGBUILD to 2.6.18
+6. [X] run makepkg PKGBUILD
+** How to set up a custom repository
+[openvz-tdw]
+Server = http://packages.shilohsystem.com/openvz-tdw
+mkdir /srv/http/packages/openvz-tdw
+#+begin_src sh
+#!/bin/sh
+PATH_TO_DB="/srv/http/packages/openvz-tdw/openvz-tdw.db.tar.gz"
+PACKAGE="/srv/http/packages/openvz-tdw/glibc-2.15-100-i686.pkg.tar.xz"
+repo-add ${PATH_TO_DB} ${PACKAGE}
+#+end_src
+==> Adding package '/srv/http/packages/openvz-tdw/glibc-2.15-100-i686.pkg.tar.xz'
+  -> Computing checksums...
+  -> Creating 'desc' db entry...
+  -> Creating 'depends' db entry...
+==> Creating updated database file '/srv/http/packages/openvz-tdw/openvz-tdw.db.tar.gz'
 
-** Misc notes
 1. repo-add /srv/http/packages/openvz/glibc-vps/i686/glibc-openvz.db.tar.gz i686/glibc-2.15-10-i686.pkg.tar.xz
+** Misc notes
+
 
 
