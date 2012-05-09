@@ -27,7 +27,3 @@ repo-add ${PATH_TO_DB} ${PACKAGE}
 ==> Creating updated database file '/srv/http/packages/openvz-tdw/openvz-tdw.db.tar.gz'
 
 1. repo-add /srv/http/packages/openvz/glibc-vps/i686/glibc-openvz.db.tar.gz i686/glibc-2.15-10-i686.pkg.tar.xz
-** Misc notes
-
-
-
