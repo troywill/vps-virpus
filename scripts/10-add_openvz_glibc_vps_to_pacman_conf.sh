@@ -8,3 +8,6 @@ set -o nounset
 mkdir --verbose --parent BACKUPS
 cp --verbose --backup=numbered /etc/pacman.conf "BACKUPS/"
 cp --verbose --interactive etc/2.pacman.conf.glib-vps.1 /etc/pacman.conf
+
+# [openvz-tdw]
+# http://packages.shilohsystem.com/openvz-tdw/
