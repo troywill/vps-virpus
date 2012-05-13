@@ -1,6 +1,25 @@
 -*- mode: org -*-
 * Introduction
 This README documents setting up Arch Linux on an vipus.com openvz
+* Step by Step [12/12]
+1. [ ] Install Arch Linux ([[http://manage.virpus.com/login.php]])
+2. [ ] Set root password
+3. [ ] To facilitate upgrading glibc, add [openvz-tdw] repository to /etc/pacman.conf
+       [openvz-tdw]
+       Server = http://packages.shilohsystem.com/openvz-tdw/i686
+       Server = http://packages.shilohsystem.com/openvz-tdw/x86_64
+4. [ ] Run "pacman -Sy" to refresh package lists
+5. [ ] Run "pacman -S pacman" to upgrade pacman
+6. [ ] Run "pacman-db-upgrade" to update the pacman database format
+7. [ ] Copy /etc/pacman.conf.pacnew to /etc/pacman.conf
+8. [ ] Add [openvz-tdw] repository again to the new /etc/pacman.conf as in step 3
+9. [ ] Run "pacman -Sy" again to refresh package lists
+10. [ ] Run "pacman -S --force initscripts" to upgrade the initscripts package
+	( See https://www.archlinux.org/news/initscripts-update-manual-intervention-required/ for details )
+11. [ ] Run "pacman -S --force filesystem" to upgrade the filesystem package
+	( See http://www.archlinux.org/news/filesystem-upgrade-manual-intervention-required/ for details )
+12. [ ] Run "pacman -Su" to upgrade the system
+13. [ ] Run "pacman -S inetutils"
 * Upgrading glibc
 ** Primary documentation
 1. [[http://wiki.openvz.org/Archlinux_Template_creation][http://wiki.openvz.org/Archlinux_Template_creation]]
