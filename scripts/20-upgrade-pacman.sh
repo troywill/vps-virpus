@@ -7,11 +7,11 @@ set -o nounset
 
 pacman --sync --refresh
 
-rm -v /usr/bin/tzselect
-rm -v /usr/sbin/zdump
-rm -v /usr/sbin/zic
+# rm -v /usr/bin/tzselect
+# rm -v /usr/sbin/zdump
+# rm -v /usr/sbin/zic
 
-pacman --sync pacman
+pacman --sync --force pacman
 
 cp -iv /etc/pacman.conf.pacnew /etc/pacman.conf
 
