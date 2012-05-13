@@ -1,15 +1,22 @@
 -*- mode: org -*-
-* This README documents setting up Arch Linux on an vipus.com openvz 
-* Developer's log
+* Introduction
+This README documents setting up Arch Linux on an vipus.com openvz
+* Upgrading glibc
+** Primary documentation
+1. [[http://wiki.openvz.org/Archlinux_Template_creation][http://wiki.openvz.org/Archlinux_Template_creation]]
+2. [[https://wiki.archlinux.org/index.php/VPS#Old_kernel_and_a_broken_system_with_OpenVZ][https://wiki.archlinux.org/index.php/VPS#Old_kernel_and_a_broken_system_with_OpenVZ]]
+3. [[https://bbs.archlinux.org/viewtopic.php?pid=1044707][https://bbs.archlinux.org/viewtopic.php?pid=1044707]]
+** Secondary documentation
+1. [[http://wiki.gotux.net/archlinux/tutorials/openvz-vps-install][http://wiki.gotux.net/archlinux/tutorials/openvz-vps-install]]
+* Developer Notes
 ** How to make a glibc package
-*** Primary documentation links
 *** Steps
-1. [X] install abs (pacman --sync abs)
-2. [X] run abs ( /usr/bin/abs )
-3. [X] copy /var/abs/glibc to a build directory
-4. [X] change pkgrel variable in PKGBUILD
-5. [X] change --enable-kernel flag in PKGBUILD to 2.6.18
-6. [X] run makepkg PKGBUILD
+1. [ ] install abs (pacman --sync abs)
+2. [ ] run abs ( /usr/bin/abs )
+3. [ ] copy /var/abs/glibc to a build directory
+4. [ ] change pkgrel variable in PKGBUILD
+5. [ ] change --enable-kernel flag in PKGBUILD to 2.6.18
+6. [ ] run makepkg PKGBUILD
 ** How to set up a custom repository
 [openvz-tdw]
 Server = http://packages.shilohsystem.com/openvz-tdw
