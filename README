@@ -1,6 +1,6 @@
 -*- mode: org -*-
 * Introduction
-This README documents setting up Arch Linux on an vipus.com openvz
+This README documents setting up Arch Linux on an virpus.com openvz server
 * Step by Step [12/12]
 1. [ ] Install Arch Linux ([[http://manage.virpus.com/login.php]])
 2. [ ] Set root password
