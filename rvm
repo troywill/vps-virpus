@@ -1,0 +1,59 @@
+-*- mode:org -*-
+* RVM
+  - [[https://wiki.archlinux.org/index.php/RVM]]
+* Steps    
+  1. [ ] Prerequisites
+   #+begin_src 
+pacman -S git curl
+   #+end_src
+  2. [ ] Run 'curl --location get.rvm.io | bash -s stable' as user
+     #+begin_src 
+curl --location get.rvm.io | bash -s stable
+     #+end_src
+     #+begin_ascii
+ Installing RVM to /home/troy/.rvm/
+    Adding rvm PATH line to /home/troy/.bashrc /home/troy/.zshrc.
+    Adding rvm loading line to /home/troy/.bash_profile /home/troy/.zlogin.
+
+# RVM:  Shell scripts enabling management of multiple ruby environments.
+# RTFM: https://rvm.io/
+# HELP: http://webchat.freenode.net/?channels=rvm (#rvm on irc.freenode.net)
+# Cheatsheet: http://cheat.errtheblog.com/s/rvm/
+# Screencast: http://screencasts.org/episodes/how-to-use-rvm
+
+# In case of any issues read output of 'rvm requirements' and/or 'rvm notes'
+
+Installation of RVM in /home/troy/.rvm/ is almost complete:
+
+  * To start using RVM you need to run `source /home/troy/.rvm/scripts/rvm`
+    in all your open shell windows, in rare cases you need to reopen all shell windows.
+
+# troy,
+#
+#   Thank you for using RVM!
+#   I sincerely hope that RVM helps to make your life easier and more enjoyable!!!
+#
+# ~Wayne
+
+
+rvm 1.13.5 (stable) by Wayne E. Seguin <wayneeseguin@gmail.com>, Michal Papis <mpapis@gmail.com> [https://rvm.io/]
+     #+end_ascii
+  3. [ ] Logout
+  4. [ ] Login
+  5. [ ] Test
+     #+begin_src sh
+type rvm | head -n1
+     #+end_src
+     The response should be: "rvm is a function"
+  6. [ ] rvm notes
+  7. [ ] rvm requirements
+  8. [ ] rvm list known
+  9. [ ] rvm install 1.9.3-p194
+* Test
+#+begin_src sh
+date
+#+end_src
+
+#+RESULTS:
+: Tue May 15 19:18:31 UTC 2012
+
