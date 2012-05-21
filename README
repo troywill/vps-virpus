@@ -1,25 +1,63 @@
 -*- mode: org -*-
 * Introduction
 This README documents setting up Arch Linux on an virpus.com openvz server
-* Step by Step [12/12]
-1. [ ] Install Arch Linux ([[http://manage.virpus.com/login.php]])
-2. [ ] Set root password
-3. [ ] To facilitate upgrading glibc, add [openvz-tdw] repository to /etc/pacman.conf
-       [openvz-tdw]
-       Server = http://packages.shilohsystem.com/openvz-tdw/i686
-       Server = http://packages.shilohsystem.com/openvz-tdw/x86_64
-4. [ ] Run "pacman -Sy" to refresh package lists
-5. [ ] Run "pacman -S pacman" to upgrade pacman
-6. [ ] Run "pacman-db-upgrade" to update the pacman database format
-7. [ ] Copy /etc/pacman.conf.pacnew to /etc/pacman.conf
-8. [ ] Add [openvz-tdw] repository again to the new /etc/pacman.conf as in step 3
-9. [ ] Run "pacman -Sy" again to refresh package lists
-10. [ ] Run "pacman -S --force initscripts" to upgrade the initscripts package
-	( See https://www.archlinux.org/news/initscripts-update-manual-intervention-required/ for details )
-11. [ ] Run "pacman -S --force filesystem" to upgrade the filesystem package
+* Step by Step [13/15]
+1. [X] Install Arch Linux ([[http://manage.virpus.com/login.php]])
+2. [X] Set root password
+3. [X] To facilitate upgrading glibc, add [openvz-tdw] repository to [[/etc/pacman.conf]]
+   [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+   #+begin_src 
+[openvz-tdw]
+Server = http://packages.shilohsystem.com/openvz-tdw/i686
+# Server = http://packages.shilohsystem.com/openvz-tdw/x86_64
+   #+end_src
+4. [X] (Optional) Edit /etc/pacman.d/mirrorlist
+   [[file://ssh:root@troywill.com:/etc/pacman.d/mirrorlist]]
+5. [X] Run "pacman -Sy" as root to refresh package lists
+   #+begin_src sh
+pacman -Sy
+   #+end_src
+6. [X] Run "pacman -S --force pacman" to upgrade pacman
+   #+begin_src 
+pacman -S --force pacman   
+   #+end_src
+7. [X] Run "pacman-db-upgrade" to update the pacman database format
+   #+begin_src 
+pacman-db-upgrade
+   #+end_src
+8. [X] Copy /etc/pacman.conf.pacnew to /etc/pacman.conf
+   #+begin_src 
+cp /etc/pacman.conf.pacnew /etc/pacman.conf
+   #+end_src
+9. [X] Add [openvz-tdw] repository again to the new /etc/pacman.conf as in step 3
+    [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+    #+begin_src 
+[openvz-tdw]
+Server = http://packages.shilohsystem.com/openvz-tdw/$arch
+    #+end_src
+10. [X] Run "pacman -Sy" again to refresh package lists
+    #+begin_src sh
+pacman -Sy
+    #+end_src
+11. [X] Run "pacman -S --force initscripts" to upgrade the initscripts package
+    ( See https://www.archlinux.org/news/initscripts-update-manual-intervention-required/ for details )
+    #+begin_src 
+pacman -S --force initscripts
+    #+end_src
+12. [X] Run "pacman -S --force filesystem" to upgrade the filesystem package
 	( See http://www.archlinux.org/news/filesystem-upgrade-manual-intervention-required/ for details )
-12. [ ] Run "pacman -Su" to upgrade the system
-13. [ ] Run "pacman -S inetutils"
+    #+begin_src 
+pacman -S --force filesystem
+    #+end_src
+13. [X] Run "pacman -Su" to upgrade the system
+    #+begin_src 
+pacman -Su
+    #+end_src
+14. [ ] Run "pacman -S inetutils"
+    #+begin_src 
+pacman -S inetutils
+    #+end_src
+15. [ ] Reboot    
 * Upgrading glibc
 ** Primary documentation
 1. [[http://wiki.openvz.org/Archlinux_Template_creation][http://wiki.openvz.org/Archlinux_Template_creation]]
@@ -29,7 +67,6 @@ This README documents setting up Arch Linux on an virpus.com openvz server
 1. [[http://wiki.gotux.net/archlinux/tutorials/openvz-vps-install][http://wiki.gotux.net/archlinux/tutorials/openvz-vps-install]]
 * Developer Notes
 ** How to make a glibc package
-*** Steps
 1. [ ] install abs (pacman --sync abs)
 2. [ ] run abs ( /usr/bin/abs )
 3. [ ] copy /var/abs/glibc to a build directory
