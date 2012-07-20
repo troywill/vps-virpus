@@ -1,6 +1,755 @@
 -*- mode: org -*-
 * Introduction
 This README documents setting up Arch Linux on an virpus.com openvz server
+* New Purchase and Install ( Wednesday, July 18, 2012 )
+1. [X] View [[http://virpus.com]]
+2. [X] Choose "Learn More" button for Openvz vps hosting [[http://virpus.com/budget-vps/]]
+   ( RAM = 512 MB, Bandwidth = 1000 GB, Annual $3.00/mo )
+3. [X] Choose "order now"
+   | Option        | Value                    | Note                                           |
+   |---------------+--------------------------+------------------------------------------------|
+   | Hostname      | usahealthscience.com     |                                                |
+   | NS1 Prefix    | ns1.usahealthscience.com |                                                |
+   | Location      | Los Angeles              |                                                |
+   | OS            | CentOS                   | Plenty more available within VPS control panel |
+   | Control Panel | No, thanks               | DirectAdmin $5.00, cPanel $10.00               |
+   | Management    | Unmanaged                | Fully Managed $10.00 USD                       |
+4. [X] "Add to Cart"
+5. [X] Install Arch Linux ([[http://manage.virpus.com/login.php]])
+6. [X] Set root password
+7. [X] To facilitate upgrading glibc 2.15, add [openvz-glibc-2.15-tdw] repository to [[/etc/pacman.conf]]
+   [[file://ssh:root@50.115.167.172:/etc/pacman.conf]]
+   #+begin_src 
+   [openvz-glibc-2.15-tdw]
+   Server = http://packages.shilohsystem.com/openvz-tdw/i686
+   #+end_src
+8. [X] Run `pacman --sync --refresh` to refresh package lists
+9. [X] Run `pacman --sync --force pacman` to upgrade pacman
+   - Explanation: pacman requires glibc 2.15, which will trigger a file conflict warning. Thus we use the --force flag.
+   - Targets (19): linux-api-headers-3.4.4-1  glibc-2.15-20120425  xz-5.0.4-1  libarchive-3.0.4-1  run-parts-4.3.2-1  ca-certificates-20120623-1  
+              libssh2-1.4.2-1  curl-7.26.0-1  pth-2.0.7-4  libksba-1.2.0-1  libassuan-2.0.3-1  pinentry-0.8.1-4  libsasl-2.1.23-9  
+              libldap-2.4.31-4  dirmngr-1.1.0-4  gnupg-2.0.19-2  gpgme-1.3.1-4  archlinux-keyring-20120622-1  pacman-4.0.3-3  
+10. [X] Run `pacman-db-upgrade` to update the pacman database format
+11. [X] Copy /etc/pacman.conf.pacnew to /etc/pacman.conf
+12. [X] Run  `pacman-key --init; pacman-key --populate archlinux`
+	to import the data required by pacman for package verification.
+	See: https://www.archlinux.org/news/having-pacman-verify-packages
+13. [X] Edit pacman.conf to temporarily turn off package signing
+    Explanation: pacman will crash with package signing without upgrading an (not yet known) library with
+    this error: `pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno`
+    [[file://ssh:root@50.115.167.172:/etc/pacman.conf]]
+14. [X] Add [openvz-tdw] repository /etc/pacman.conf
+    [[file://ssh:root@50.115.167.172:/etc/pacman.conf]]
+    #+begin_src 
+[openvz-tdw]
+Server = http://packages.shilohsystem.com/openvz-tdw/$arch
+    #+end_src
+15. [X] Run `pacman --sync --refresh` again to refresh package lists
+16. [X] Run `pacman --sync --force initscripts` to upgrade the initscripts package
+    ( See https://www.archlinux.org/news/initscripts-update-manual-intervention-required/ for details )
+17. [X] Run `pacman --sync --force filesystem` to upgrade the filesystem package
+	( See http://www.archlinux.org/news/filesystem-upgrade-manual-intervention-required/ for details )
+    NOTE: inaccurate error message => `error: extract: not overwriting dir with file var/run
+          error: problem occurred while upgrading filesystem
+          error: could not commit transaction
+          error: failed to commit transaction (transaction aborted)
+          Errors occurred, no packages were upgraded.`
+	  In fact, the package was upgraded, which can be shown with pacman -Q filesystem
+
+    NOTE: pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno
+18. [X] Run `pacman --sync --force krb5`
+19. [X] Read [[https://wiki.archlinux.org/index.php/DeveloperWiki:usrlib]]un
+20. [X] Run `pacman -Sd binutils gcc-libs`
+21. [X] Run `pacman -Syu --ignore glibc`
+    - :: Replace libusb with core/libusbx? [Y/n]
+    - :: Replace mailx with core/heirloom-mailx? [Y/n]
+    - :: Replace procps with core/procps-ng? [Y/n]
+    - :: Replace sqlite3 with extra/sqlite? [Y/n]
+    error: failed to commit transaction (conflicting files)
+    glibc: /lib exists in filesystem
+22. [X] Run `pacman --sync util-linux`
+23. [X] Run `pacman --sync --sysupgrade`
+24. [X] Run `pacman --sync inetutils`
+25. [X] Run `pacman --sync base-devel sudo emacs-nox rsync git`
+26. [X] Run `adduser NEWUSER`
+27. [X] Reboot
+* Wednesday July 18, 2012)
+** Well documented install 15:43
+1. [X] Install Arch Linux at 15:45 ([[http://manage.virpus.com/login.php]])
+2. [X] Set root password
+3. [X] To facilitate upgrading glibc 2.15, add [openvz-glibc-2.15-tdw] repository to [[/etc/pacman.conf]]
+   [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+   #+begin_src 
+   [openvz-glibc-2.15-tdw]
+   Server = http://packages.shilohsystem.com/openvz-tdw/i686
+   #+end_src
+4. [X] Run `pacman --sync --refresh` to refresh package lists
+5. [X] Run "pacman --sync --force pacman" to upgrade pacman
+   - Explanation: pacman requires glibc 2.15, which will trigger a file conflict warning. Thus we use the --force flag.
+   - Targets (19): linux-api-headers-3.4.4-1  glibc-2.15-20120425  xz-5.0.4-1  libarchive-3.0.4-1  run-parts-4.3.2-1  ca-certificates-20120623-1  
+              libssh2-1.4.2-1  curl-7.26.0-1  pth-2.0.7-4  libksba-1.2.0-1  libassuan-2.0.3-1  pinentry-0.8.1-4  libsasl-2.1.23-9  
+              libldap-2.4.31-4  dirmngr-1.1.0-4  gnupg-2.0.19-2  gpgme-1.3.1-4  archlinux-keyring-20120622-1  pacman-4.0.3-3  
+6. [X] Run "pacman-db-upgrade" to update the pacman database format
+7. [X] Copy /etc/pacman.conf.pacnew to /etc/pacman.conf
+8. [X] Run  `pacman-key --init; pacman-key --populate archlinux`
+       to import the data required by pacman for package verification.
+       See: https://www.archlinux.org/news/having-pacman-verify-packages
+9. [X] Edit pacman.conf to temporarily turn off package signing
+   Explanation: pacman will crash with package signing without upgrading an (not yet known) library with
+   this error: `pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno`
+   [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+10. [X] Add [openvz-tdw] repository /etc/pacman.conf
+    [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+    #+begin_src 
+[openvz-tdw]
+Server = http://packages.shilohsystem.com/openvz-tdw/$arch
+    #+end_src
+11. [X] Run `pacman --sync --refresh` again to refresh package lists
+12. [X] Run `pacman --sync --force initscripts` to upgrade the initscripts package
+    ( See https://www.archlinux.org/news/initscripts-update-manual-intervention-required/ for details )
+13. [X] Run `pacman --sync --force filesystem` to upgrade the filesystem package
+	( See http://www.archlinux.org/news/filesystem-upgrade-manual-intervention-required/ for details )
+    NOTE: inaccurate error message => `error: extract: not overwriting dir with file var/run
+          error: problem occurred while upgrading filesystem
+          error: could not commit transaction
+          error: failed to commit transaction (transaction aborted)
+          Errors occurred, no packages were upgraded.`
+	  In fact, the package was upgraded, which can be shown with pacman -Q filesystem
+
+    NOTE: pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno
+14. [X] Run `pacman --sync --force krb5`
+15. [ ] Run "pacman --sync --sysupgrade" to upgrade the system
+    - :: Replace libusb with core/libusbx? [Y/n]
+    - :: Replace mailx with core/heirloom-mailx? [Y/n]
+    - :: Replace procps with core/procps-ng? [Y/n]
+    - :: Replace sqlite3 with extra/sqlite? [Y/n]
+   error: failed to commit transaction (conflicting files)
+   glibc: /lib exists in filesystem
+   Read [[https://wiki.archlinux.org/index.php/DeveloperWiki:usrlib]]
+16. [X] Run `pacman -Sd binutils gcc-libs`
+17. [X] Run `pacman -Syu --ignore glibc`
+18. [X] Run `pacman --sync util-linux`
+19. [ ] Run `pacman --sync --sysupgrade`
+20. [ ] Run `pacman --sync inetutils`
+21. [ ] Reboot    
+** Failed Attempt 3 Step by Step (Wednesday July 18, 2012) [6/18]
+1. [X] Install Arch Linux ([[http://manage.virpus.com/login.php]])
+2. [X] Set root password
+3. [X] (Optional) Edit /etc/pacman.d/mirrorlist
+   [[file://ssh:root@troywill.com:/etc/pacman.d/mirrorlist]]
+4. [X] Run "pacman -Sy" as root to refresh package lists
+      #+begin_src sh
+      pacman -Sy
+      #+end_src
+5. [X] Run "pacman -S --force initscripts" to upgrade the initscripts package
+   ( See https://www.archlinux.org/news/initscripts-update-manual-intervention-required/ for details )
+   #+begin_src 
+   pacman -S --force initscripts
+   #+end_src
+6. [ ] Run "pacman -S --force filesystem" to upgrade the filesystem package
+       ( See http://www.archlinux.org/news/filesystem-upgrade-manual-intervention-required/ for details )
+   #+begin_src 
+   pacman -S --force filesystem
+   #+end_src
+   NOTE: inaccurate error message => `error: extract: not overwriting dir with file var/run
+        error: problem occurred while upgrading filesystem
+        error: could not commit transaction
+        error: failed to commit transaction (transaction aborted)
+        Errors occurred, no packages were upgraded.`
+	  
+	In fact, the package was upgraded
+
+   NOTE: pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno
+7. [ ] Run "pacman --sync makedev"
+   I did this at 13:43. When rebooting I got `PTY allocation request failed on channel 0`
+7. [ ] Run "pacman -S --force pacman" to upgrade pacman
+   #+begin_src 
+pacman -S --force pacman   
+   #+end_src
+8. [ ] Run "pacman-db-upgrade" to update the pacman database format
+   #+begin_src 
+pacman-db-upgrade
+   #+end_src
+9. [ ] Copy /etc/pacman.conf.pacnew to /etc/pacman.conf
+   #+begin_src 
+cp /etc/pacman.conf.pacnew /etc/pacman.conf
+   #+end_src
+10. [ ] Run  `pacman-key --init; pacman-key --populate archlinux`
+	to import the data required by pacman for package verification.
+	See: https://www.archlinux.org/news/having-pacman-verify-packages
+    #+begin_src 
+ pacman-key --init
+ pacman-key --populate archlinux
+    #+end_src
+11. [X] To facilitate upgrading glibc, add [openvz-tdw] repository to [[/etc/pacman.conf]]
+    [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+    #+begin_src 
+ [openvz-tdw]
+ Server = http://packages.shilohsystem.com/openvz-tdw/i686
+ # Server = http://packages.shilohsystem.com/openvz-tdw/x86_64
+    #+end_src
+12. [ ] Edit pacman.conf to temporarily turn off package signing
+    
+    Explanation: pacman will crash with package signing without upgrading an (not yet known) library with
+    this error: `pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno`
+    [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+   #+begin_src
+[core]
+SigLevel = PackageRequired
+SigLevel = Never
+Include = /etc/pacman.d/mirrorlist
+
+[extra]
+SigLevel = PackageRequired
+SigLevel = Never
+Include = /etc/pacman.d/mirrorlist
+
+#[community-testing]
+#SigLevel = PackageRequired
+#Include = /etc/pacman.d/mirrorlist
+
+[community]
+SigLevel = PackageRequired
+SigLevel = Never
+Include = /etc/pacman.d/mirrorlist
+#+end_src
+13. [ ] Add [openvz-tdw] repository again to the new /etc/pacman.conf as in step 3
+      [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+      #+begin_src 
+  [openvz-tdw]
+  Server = http://packages.shilohsystem.com/openvz-tdw/$arch
+      #+end_src
+14. [ ] Run "pacman -Sy" again to refresh package lists
+    #+begin_src sh
+pacman -Sy
+    #+end_src
+15. [ ] Run "pacman -S --force krb5
+16. [ ] Run "pacman -Su" to upgrade the system
+    #+begin_src 
+pacman -Su
+    #+end_src
+17. [ ] Run "pacman -S inetutils"
+    #+begin_src 
+pacman -S inetutils
+    #+end_src
+18. [ ] Reboot    
+
+* FAILED Step by Step (Wednesday July 18, 2012 i686) [0/18]
+** Purchase account July 18, 2012 FAIL[3/3]
+1. [X] View [[http://virpus.com]]
+2. [X] Choose "Learn More" button for Xen vps hosting [[http://virpus.com/budget-vps/xen.html]]
+   ( RAM = 256 MB, SWAP = 512 MB, Bandwidth = 1000 GB, Annual $5.95/mo )
+3. [X] Choose "order now"
+| Option        | Value                    | Note                                           |
+|---------------+--------------------------+------------------------------------------------|
+| Hostname      | usahealthscience.com     |                                                |
+| NS1 Prefix    | ns1.usahealthscience.com |                                                |
+| Location      | Los Angeles              |                                                |
+| OS            | CentOS                   | Plenty more available within VPS control panel |
+| Control Panel | No, thanks               | DirectAdmin $5.00, cPanel $10.00               |
+| Management    | Unmanaged                | Fully Managed $10.00 USD                       |
+
+4. [ ] "Add to Cart"
+** Install Arch Linux  
+1. [ ] Install Arch Linux ([[http://manage.virpus.com/login.php]])
+   "SolusVM does not officially support Arch, hence you will need to manually configure the network: /etc/rc.conf and /etc/resolv.conf"
+2. [ ] Set root password
+3. [ ] To facilitate upgrading glibc, add [openvz-tdw] repository to [[/etc/pacman.conf]]
+   [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+   #+begin_src 
+[openvz-tdw]
+Server = http://packages.shilohsystem.com/openvz-tdw/i686
+# Server = http://packages.shilohsystem.com/openvz-tdw/x86_64
+   #+end_src
+4. [ ] (Optional) Edit /etc/pacman.d/mirrorlist
+   [[file://ssh:root@troywill.com:/etc/pacman.d/mirrorlist]]
+5. [ ] Run "pacman -Sy" as root to refresh package lists
+   #+begin_src sh
+pacman -Sy
+   #+end_src
+6. [ ] Run "pacman -S --force pacman" to upgrade pacman
+   #+begin_src 
+pacman -S --force pacman   
+   #+end_src
+7. [ ] Run "pacman-db-upgrade" to update the pacman database format
+   #+begin_src 
+pacman-db-upgrade
+   #+end_src
+8. [ ] Copy /etc/pacman.conf.pacnew to /etc/pacman.conf
+   #+begin_src 
+cp /etc/pacman.conf.pacnew /etc/pacman.conf
+   #+end_src
+9. [ ] Run  `pacman-key --init; pacman-key --populate archlinux`
+       to import the data required by pacman for package verification.
+       See: https://www.archlinux.org/news/having-pacman-verify-packages
+   #+begin_src 
+pacman-key --init
+pacman-key --populate archlinux
+   #+end_src
+10. [ ] Edit pacman.conf to temporarily turn off package signing
+    
+    Explanation: pacman will crash with package signing without upgrading an (not yet known) library with
+    this error: `pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno`
+    [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+   #+begin_src
+[core]
+SigLevel = PackageRequired
+SigLevel = Never
+Include = /etc/pacman.d/mirrorlist
+
+[extra]
+SigLevel = PackageRequired
+SigLevel = Never
+Include = /etc/pacman.d/mirrorlist
+
+#[community-testing]
+#SigLevel = PackageRequired
+#Include = /etc/pacman.d/mirrorlist
+
+[community]
+SigLevel = PackageRequired
+SigLevel = Never
+Include = /etc/pacman.d/mirrorlist
+   #+end_src
+11. [ ] Add [openvz-tdw] repository again to the new /etc/pacman.conf as in step 3
+      [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+      #+begin_src 
+  [openvz-tdw]
+  Server = http://packages.shilohsystem.com/openvz-tdw/$arch
+      #+end_src
+12. [ ] Run "pacman -Sy" again to refresh package lists
+    #+begin_src sh
+pacman -Sy
+    #+end_src
+13. [ ] Run "pacman -S --force initscripts" to upgrade the initscripts package
+    ( See https://www.archlinux.org/news/initscripts-update-manual-intervention-required/ for details )
+    #+begin_src 
+pacman -S --force initscripts
+    #+end_src
+14. [ ] Run "pacman -S --force filesystem" to upgrade the filesystem package
+	( See http://www.archlinux.org/news/filesystem-upgrade-manual-intervention-required/ for details )
+    #+begin_src 
+pacman -S --force filesystem
+    #+end_src
+    NOTE: inaccurate error message => `error: extract: not overwriting dir with file var/run
+          error: problem occurred while upgrading filesystem
+          error: could not commit transaction
+          error: failed to commit transaction (transaction aborted)
+          Errors occurred, no packages were upgraded.`
+	  
+	  In fact, the package was upgraded
+
+    NOTE: pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno
+15. [ ] Run "pacman -S --force krb5
+16. [ ] Run "pacman -Su" to upgrade the system
+    #+begin_src 
+pacman -Su
+    #+end_src
+17. [ ] Run "pacman -S inetutils"
+    #+begin_src 
+pacman -S inetutils
+    #+end_src
+18. [ ] Reboot    
+
+* Step by Step (successful Friday June 15, 2012 i686) [0/18]
+1. [ ] Install Arch Linux ([[http://manage.virpus.com/login.php]])
+2. [ ] Set root password
+3. [ ] To facilitate upgrading glibc, add [openvz-tdw] repository to [[/etc/pacman.conf]]
+   [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+   #+begin_src 
+[openvz-tdw]
+Server = http://packages.shilohsystem.com/openvz-tdw/i686
+# Server = http://packages.shilohsystem.com/openvz-tdw/x86_64
+   #+end_src
+4. [ ] (Optional) Edit /etc/pacman.d/mirrorlist
+   [[file://ssh:root@troywill.com:/etc/pacman.d/mirrorlist]]
+5. [ ] Run "pacman -Sy" as root to refresh package lists
+   #+begin_src sh
+pacman -Sy
+   #+end_src
+6. [ ] Run "pacman -S --force pacman" to upgrade pacman
+   #+begin_src 
+pacman -S --force pacman   
+   #+end_src
+7. [ ] Run "pacman-db-upgrade" to update the pacman database format
+   #+begin_src 
+pacman-db-upgrade
+   #+end_src
+8. [ ] Copy /etc/pacman.conf.pacnew to /etc/pacman.conf
+   #+begin_src 
+cp /etc/pacman.conf.pacnew /etc/pacman.conf
+   #+end_src
+9. [ ] Run  `pacman-key --init; pacman-key --populate archlinux`
+       to import the data required by pacman for package verification.
+       See: https://www.archlinux.org/news/having-pacman-verify-packages
+   #+begin_src 
+pacman-key --init
+pacman-key --populate archlinux
+   #+end_src
+10. [ ] Edit pacman.conf to temporarily turn off package signing
+    
+    Explanation: pacman will crash with package signing without upgrading an (not yet known) library with
+    this error: `pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno`
+    [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+   #+begin_src
+[core]
+SigLevel = PackageRequired
+SigLevel = Never
+Include = /etc/pacman.d/mirrorlist
+
+[extra]
+SigLevel = PackageRequired
+SigLevel = Never
+Include = /etc/pacman.d/mirrorlist
+
+#[community-testing]
+#SigLevel = PackageRequired
+#Include = /etc/pacman.d/mirrorlist
+
+[community]
+SigLevel = PackageRequired
+SigLevel = Never
+Include = /etc/pacman.d/mirrorlist
+   #+end_src
+11. [ ] Add [openvz-tdw] repository again to the new /etc/pacman.conf as in step 3
+      [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+      #+begin_src 
+  [openvz-tdw]
+  Server = http://packages.shilohsystem.com/openvz-tdw/$arch
+      #+end_src
+12. [ ] Run "pacman -Sy" again to refresh package lists
+    #+begin_src sh
+pacman -Sy
+    #+end_src
+13. [ ] Run "pacman -S --force initscripts" to upgrade the initscripts package
+    ( See https://www.archlinux.org/news/initscripts-update-manual-intervention-required/ for details )
+    #+begin_src 
+pacman -S --force initscripts
+    #+end_src
+14. [ ] Run "pacman -S --force filesystem" to upgrade the filesystem package
+	( See http://www.archlinux.org/news/filesystem-upgrade-manual-intervention-required/ for details )
+    #+begin_src 
+pacman -S --force filesystem
+    #+end_src
+    NOTE: inaccurate error message => `error: extract: not overwriting dir with file var/run
+          error: problem occurred while upgrading filesystem
+          error: could not commit transaction
+          error: failed to commit transaction (transaction aborted)
+          Errors occurred, no packages were upgraded.`
+	  
+	  In fact, the package was upgraded
+
+    NOTE: pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno
+15. [ ] Run "pacman -S --force krb5
+16. [ ] Run "pacman -Su" to upgrade the system
+    #+begin_src 
+pacman -Su
+    #+end_src
+17. [ ] Run "pacman -S inetutils"
+    #+begin_src 
+pacman -S inetutils
+    #+end_src
+18. [ ] Reboot    
+** Attempt 4 at 14:08 ( This step succeeded )
+1. [X] Install Arch Linux at 14:09 ([[http://manage.virpus.com/login.php]])
+2. [X] Set root password
+3. [X] To facilitate upgrading glibc 2.15, add [openvz-glibc-2.15-tdw] repository to [[/etc/pacman.conf]]
+   [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+   #+begin_src 
+   [openvz-glibc-2.15-tdw]
+   Server = http://packages.shilohsystem.com/openvz-tdw/i686
+   #+end_src
+4. [X] Run "pacman -Sy" or "pacman --sync --refresh" to refresh package lists
+   #+begin_src sh
+   pacman -Sy
+   #+end_src
+5. [X] Run "pacman -S --force pacman" to upgrade pacman
+6. [X] Run "pacman-db-upgrade" to update the pacman database format
+   #+begin_src 
+pacman-db-upgrade
+   #+end_src
+7. [X] Copy /etc/pacman.conf.pacnew to /etc/pacman.conf
+   #+begin_src 
+   cp /etc/pacman.conf.pacnew /etc/pacman.conf
+   #+end_src
+8. [X] Run  `pacman-key --init; pacman-key --populate archlinux`
+       to import the data required by pacman for package verification.
+       See: https://www.archlinux.org/news/having-pacman-verify-packages
+   #+begin_src 
+   pacman-key --init
+   pacman-key --populate archlinux
+   #+end_src
+9. [ ] Edit pacman.conf to temporarily turn off package signing
+   Explanation: pacman will crash with package signing without upgrading an (not yet known) library with
+   this error: `pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno`
+   [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+10. [X] Add [openvz-tdw] repository /etc/pacman.conf
+    [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+      #+begin_src 
+  [openvz-tdw]
+  Server = http://packages.shilohsystem.com/openvz-tdw/$arch
+      #+end_src
+11. [X] Run "pacman -Sy" again to refresh package lists
+    #+begin_src sh
+pacman -Sy
+    #+end_src
+12. [X] Run "pacman -S --force initscripts" to upgrade the initscripts package
+    ( See https://www.archlinux.org/news/initscripts-update-manual-intervention-required/ for details )
+    #+begin_src 
+pacman -S --force initscripts
+    #+end_src
+13. [X] Run "pacman -S --force filesystem" to upgrade the filesystem package
+	( See http://www.archlinux.org/news/filesystem-upgrade-manual-intervention-required/ for details )
+    #+begin_src 
+pacman -S --force filesystem
+    #+end_src
+    NOTE: inaccurate error message => `error: extract: not overwriting dir with file var/run
+          error: problem occurred while upgrading filesystem
+          error: could not commit transaction
+          error: failed to commit transaction (transaction aborted)
+          Errors occurred, no packages were upgraded.`
+	  
+	  In fact, the package was upgraded
+
+    NOTE: pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno
+14. [ ] Run "pacman -S --force krb5
+15. [ ] Run "pacman -Su" to upgrade the system
+    #+begin_src 
+    pacman -Su
+    #+end_src
+   error: failed to commit transaction (conflicting files)
+   glibc: /lib exists in filesystem
+   Read [[https://wiki.archlinux.org/index.php/DeveloperWiki:usrlib]]
+16. [X] pacman -Sd binutils gcc gcc-libs
+15. [ ] Run "pacman -Su" to upgrade the system
+    error: failed to commit transaction (conflicting files)
+    glibc: /lib exists in filesystem
+1. [ ] 
+17. [ ] Run "pacman -S inetutils"
+    #+begin_src 
+pacman -S inetutils
+    #+end_src
+18. [ ] Reboot    
+** Failed Attempt 3 Step by Step (Wednesday July 18, 2012) [6/18]
+1. [X] Install Arch Linux ([[http://manage.virpus.com/login.php]])
+2. [X] Set root password
+3. [X] (Optional) Edit /etc/pacman.d/mirrorlist
+   [[file://ssh:root@troywill.com:/etc/pacman.d/mirrorlist]]
+4. [X] Run "pacman -Sy" as root to refresh package lists
+      #+begin_src sh
+      pacman -Sy
+      #+end_src
+5. [X] Run "pacman -S --force initscripts" to upgrade the initscripts package
+   ( See https://www.archlinux.org/news/initscripts-update-manual-intervention-required/ for details )
+   #+begin_src 
+   pacman -S --force initscripts
+   #+end_src
+6. [ ] Run "pacman -S --force filesystem" to upgrade the filesystem package
+       ( See http://www.archlinux.org/news/filesystem-upgrade-manual-intervention-required/ for details )
+   #+begin_src 
+   pacman -S --force filesystem
+   #+end_src
+   NOTE: inaccurate error message => `error: extract: not overwriting dir with file var/run
+        error: problem occurred while upgrading filesystem
+        error: could not commit transaction
+        error: failed to commit transaction (transaction aborted)
+        Errors occurred, no packages were upgraded.`
+	  
+	In fact, the package was upgraded
+
+   NOTE: pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno
+7. [ ] Run "pacman --sync makedev"
+   I did this at 13:43. When rebooting I got `PTY allocation request failed on channel 0`
+7. [ ] Run "pacman -S --force pacman" to upgrade pacman
+   #+begin_src 
+pacman -S --force pacman   
+   #+end_src
+8. [ ] Run "pacman-db-upgrade" to update the pacman database format
+   #+begin_src 
+pacman-db-upgrade
+   #+end_src
+9. [ ] Copy /etc/pacman.conf.pacnew to /etc/pacman.conf
+   #+begin_src 
+cp /etc/pacman.conf.pacnew /etc/pacman.conf
+   #+end_src
+10. [ ] Run  `pacman-key --init; pacman-key --populate archlinux`
+	to import the data required by pacman for package verification.
+	See: https://www.archlinux.org/news/having-pacman-verify-packages
+    #+begin_src 
+ pacman-key --init
+ pacman-key --populate archlinux
+    #+end_src
+11. [X] To facilitate upgrading glibc, add [openvz-tdw] repository to [[/etc/pacman.conf]]
+    [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+    #+begin_src 
+ [openvz-tdw]
+ Server = http://packages.shilohsystem.com/openvz-tdw/i686
+ # Server = http://packages.shilohsystem.com/openvz-tdw/x86_64
+    #+end_src
+12. [ ] Edit pacman.conf to temporarily turn off package signing
+    
+    Explanation: pacman will crash with package signing without upgrading an (not yet known) library with
+    this error: `pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno`
+    [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+   #+begin_src
+[core]
+SigLevel = PackageRequired
+SigLevel = Never
+Include = /etc/pacman.d/mirrorlist
+
+[extra]
+SigLevel = PackageRequired
+SigLevel = Never
+Include = /etc/pacman.d/mirrorlist
+
+#[community-testing]
+#SigLevel = PackageRequired
+#Include = /etc/pacman.d/mirrorlist
+
+[community]
+SigLevel = PackageRequired
+SigLevel = Never
+Include = /etc/pacman.d/mirrorlist
+#+end_src
+13. [ ] Add [openvz-tdw] repository again to the new /etc/pacman.conf as in step 3
+      [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+      #+begin_src 
+  [openvz-tdw]
+  Server = http://packages.shilohsystem.com/openvz-tdw/$arch
+      #+end_src
+14. [ ] Run "pacman -Sy" again to refresh package lists
+    #+begin_src sh
+pacman -Sy
+    #+end_src
+15. [ ] Run "pacman -S --force krb5
+16. [ ] Run "pacman -Su" to upgrade the system
+    #+begin_src 
+pacman -Su
+    #+end_src
+17. [ ] Run "pacman -S inetutils"
+    #+begin_src 
+pacman -S inetutils
+    #+end_src
+18. [ ] Reboot    
+
+* FAILED Step by Step (Wednesday July 18, 2012 i686) [0/18]
+** Purchase account [3/3]
+1. [X] View [[http://virpus.com]]
+2. [X] Choose "Learn More" button for Xen vps hosting [[http://virpus.com/budget-vps/xen.html]]
+   ( RAM = 256 MB, SWAP = 512 MB, Bandwidth = 1000 GB, Annual $5.95/mo )
+3. [X] Choose "order now"
+| Option        | Value                    | Note                                           |
+|---------------+--------------------------+------------------------------------------------|
+| Hostname      | usahealthscience.com     |                                                |
+| NS1 Prefix    | ns1.usahealthscience.com |                                                |
+| Location      | Los Angeles              |                                                |
+| OS            | CentOS                   | Plenty more available within VPS control panel |
+| Control Panel | No, thanks               | DirectAdmin $5.00, cPanel $10.00               |
+| Management    | Unmanaged                | Fully Managed $10.00 USD                       |
+
+4. [ ] "Add to Cart"
+
+** Install Arch Linux  
+1. [ ] Install Arch Linux ([[http://manage.virpus.com/login.php]])
+   "SolusVM does not officially support Arch, hence you will need to manually configure the network: /etc/rc.conf and /etc/resolv.conf"
+2. [ ] Set root password
+3. [ ] To facilitate upgrading glibc, add [openvz-tdw] repository to [[/etc/pacman.conf]]
+   [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+   #+begin_src 
+[openvz-tdw]
+Server = http://packages.shilohsystem.com/openvz-tdw/i686
+# Server = http://packages.shilohsystem.com/openvz-tdw/x86_64
+   #+end_src
+4. [ ] (Optional) Edit /etc/pacman.d/mirrorlist
+   [[file://ssh:root@troywill.com:/etc/pacman.d/mirrorlist]]
+5. [ ] Run "pacman -Sy" as root to refresh package lists
+   #+begin_src sh
+pacman -Sy
+   #+end_src
+6. [ ] Run "pacman -S --force pacman" to upgrade pacman
+   #+begin_src 
+pacman -S --force pacman   
+   #+end_src
+7. [ ] Run "pacman-db-upgrade" to update the pacman database format
+   #+begin_src 
+pacman-db-upgrade
+   #+end_src
+8. [ ] Copy /etc/pacman.conf.pacnew to /etc/pacman.conf
+   #+begin_src 
+cp /etc/pacman.conf.pacnew /etc/pacman.conf
+   #+end_src
+9. [ ] Run  `pacman-key --init; pacman-key --populate archlinux`
+       to import the data required by pacman for package verification.
+       See: https://www.archlinux.org/news/having-pacman-verify-packages
+   #+begin_src 
+pacman-key --init
+pacman-key --populate archlinux
+   #+end_src
+10. [ ] Edit pacman.conf to temporarily turn off package signing
+    
+    Explanation: pacman will crash with package signing without upgrading an (not yet known) library with
+    this error: `pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno`
+    [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+   #+begin_src
+[core]
+SigLevel = PackageRequired
+SigLevel = Never
+Include = /etc/pacman.d/mirrorlist
+
+[extra]
+SigLevel = PackageRequired
+SigLevel = Never
+Include = /etc/pacman.d/mirrorlist
+
+#[community-testing]
+#SigLevel = PackageRequired
+#Include = /etc/pacman.d/mirrorlist
+
+[community]
+SigLevel = PackageRequired
+SigLevel = Never
+Include = /etc/pacman.d/mirrorlist
+   #+end_src
+11. [ ] Add [openvz-tdw] repository again to the new /etc/pacman.conf as in step 3
+      [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+      #+begin_src 
+  [openvz-tdw]
+  Server = http://packages.shilohsystem.com/openvz-tdw/$arch
+      #+end_src
+12. [ ] Run "pacman -Sy" again to refresh package lists
+    #+begin_src sh
+pacman -Sy
+    #+end_src
+13. [ ] Run "pacman -S --force initscripts" to upgrade the initscripts package
+    ( See https://www.archlinux.org/news/initscripts-update-manual-intervention-required/ for details )
+    #+begin_src 
+pacman -S --force initscripts
+    #+end_src
+14. [ ] Run "pacman -S --force filesystem" to upgrade the filesystem package
+	( See http://www.archlinux.org/news/filesystem-upgrade-manual-intervention-required/ for details )
+    #+begin_src 
+pacman -S --force filesystem
+    #+end_src
+    NOTE: inaccurate error message => `error: extract: not overwriting dir with file var/run
+          error: problem occurred while upgrading filesystem
+          error: could not commit transaction
+          error: failed to commit transaction (transaction aborted)
+          Errors occurred, no packages were upgraded.`
+	  
+	  In fact, the package was upgraded
+
+    NOTE: pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno
+15. [ ] Run "pacman -S --force krb5
+16. [ ] Run "pacman -Su" to upgrade the system
+    #+begin_src 
+pacman -Su
+    #+end_src
+17. [ ] Run "pacman -S inetutils"
+    #+begin_src 
+pacman -S inetutils
+    #+end_src
+18. [ ] Reboot    
+
 * Step by Step (successful Friday June 15, 2012 i686) [0/18]
 1. [ ] Install Arch Linux ([[http://manage.virpus.com/login.php]])
 2. [ ] Set root password
