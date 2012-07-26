@@ -1,0 +1,56 @@
+-*- mode: org -*-
+* Introduction
+This README documents setting up Arch Linux on an virpus.com openvz server
+* New Install ( Thursday, July 26, 2012 )
+1. [X] Install Arch Linux ([[http://manage.virpus.com/login.php]])
+2. [X] Set root password
+3. [X] To facilitate upgrading glibc 2.15, add [openvz-glibc-2.15-tdw] repository to [[/etc/pacman.conf]]
+   [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+   #+begin_src sh
+   [openvz-glibc-2.15-tdw]
+   Server = http://packages.shilohsystem.com/openvz-tdw/i686
+   #+end_src
+4. [X] Run `pacman --sync --refresh` to refresh package lists
+5. [X] Run `pacman --sync --force pacman` to upgrade pacman
+   - Explanation: pacman requires glibc 2.15, which will trigger a file conflict warning. Thus we use the --force flag.
+   - These 19 packages get installed: linux-api-headers-3.4.6-1  glibc-2.15-20120425  xz-5.0.4-1  libarchive-3.0.4-1  run-parts-4.3.2-1  ca-certificates-20120623-1 libssh2-1.4.2-1  curl-7.26.0-1  pth-2.0.7-4  libksba-1.2.0-1  libassuan-2.0.3-1  pinentry-0.8.1-4  libsasl-2.1.23-9 libldap-2.4.31-4  dirmngr-1.1.0-4  gnupg-2.0.19-2  gpgme-1.3.1-4  archlinux-keyring-20120622-1  pacman-4.0.3-3
+6. [X] Run `pacman-db-upgrade` to update the pacman database format
+7. [X] Run  `pacman-key --init; pacman-key --populate archlinux`
+       to import the data required by pacman for package verification.
+       See: https://www.archlinux.org/news/having-pacman-verify-packages
+8. [X] Copy /etc/pacman.conf.pacnew to /etc/pacman.conf
+9. [X] Edit pacman.conf to temporarily turn off package signing
+   - Do this by replacing `SigLevel = PackageRequired` with `SigLevel = Never`
+   Explanation: pacman will crash with package signing without upgrading an (not yet known) library with
+   this error: `pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno`
+   [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+10. [X] Add [openvz-tdw] repository /etc/pacman.conf
+    [[file://ssh:root@troywill.com:/etc/pacman.conf]]
+    #+begin_src sh
+[openvz-tdw]
+Server = http://packages.shilohsystem.com/openvz-tdw/$arch
+    #+end_src
+11. [X] Run `pacman --sync --refresh` again to refresh package lists
+12. [X] Run `pacman --sync --force initscripts` to upgrade the initscripts package
+    ( See https://www.archlinux.org/news/initscripts-update-manual-intervention-required/ for details )
+13. [X] Run `pacman --sync --force filesystem` to upgrade the filesystem package
+	( See http://www.archlinux.org/news/filesystem-upgrade-manual-intervention-required/ for details )
+    NOTE 1: inaccurate error message => `error: extract: not overwriting dir with file var/run
+          error: problem occurred while upgrading filesystem
+          error: could not commit transaction
+          error: failed to commit transaction (transaction aborted)
+          Errors occurred, no packages were upgraded.`
+	  In fact, the package was upgraded, which can be shown with pacman -Q filesystem
+    NOTE 2: `pacman --sync --force filesystem` may hang. Wait a while, kill with Ctrl-C if neccessary,
+          and rerun pacman --sync --force filesystem
+14. [X] Run `pacman --sync --force krb5`
+15. [X] Run `pacman -Sd binutils gcc-libs` ( See [[https://wiki.archlinux.org/index.php/DeveloperWiki:usrlib]]un )
+16. [X] Run `pacman --sync util-linux`
+    - Note: Encountered error here
+17. [X] Run `pacman -Syu --ignore glibc`
+18. [X] Run `pacman --sync util-linux`    
+19. [X] Run `pacman --sync --sysupgrade`
+20. [X] Run `pacman --sync inetutils`
+21. [X] Run `pacman --sync base-devel sudo emacs-nox rsync git screen`
+22. [X] Run `adduser NEWUSER`
+23. [X] Reboot
