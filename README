@@ -1,6 +1,188 @@
 -*- mode: org -*-
 * Introduction
 This README documents setting up Arch Linux on an virpus.com openvz server
+* TODO IN PROGRESS Monday, November 12, 2012
+** Upgrade glibc
+#+begin_src perl
+system("mv -v lib lib-hide");
+symlink "usr/lib", lib;
+#+end_src
+
+1. [X] pacman --sync --refresh
+2. [X] To facilitate upgrading glibc 2.15, add [openvz-glibc-2.15-tdw] repository to [[/etc/pacman.conf]]
+   [[file://ssh:root@shilohsystem.com:/etc/pacman.conf]]
+   #+begin_src sh
+   [openvz-glibc-2.15-tdw]
+   Server = http://troywill.info/openvz-tdw/i686
+   #+end_src
+3. [X] pacman --sync --refresh
+4. [X] pacman --sync binutils gcc-libs gcc
+5. [X] pacman --sync abs
+6. [X] Run abs
+   #+begin_example
+   [root@shilohsystem ~]# abs
+    ==> Downloading tarballs...
+    ==> core...
+    ==> extra...
+    ==> community...
+   #+end_example
+7. [X] useradd --create-home --gid users --shell /bin/bash troy
+8. [X] su -c troy
+9. [ ] 
+* New Install FAIL!!!!( Monday, November 12, 2012 ) shilohystem.com => 50.115.161.205
+1. [X] Install Arch Linux ([[http://manage.virpus.com/login.php]])
+2. [X] Set root password
+3. [X] pacman --sync --refresh
+4. [X] To facilitate upgrading glibc 2.15, add [openvz-glibc-2.15-tdw] repository to [[/etc/pacman.conf]]
+   [[file://ssh:root@shilohsystem.com:/etc/pacman.conf]]
+   #+begin_src sh
+   [openvz-glibc-2.15-tdw]
+   Server = http://troywill.info/openvz-tdw/i686
+   #+end_src
+ 
+5. [X] pacman --sync --sysupgrade
+   #+begin_example
+:: The following packages should be upgraded first :
+    pacman
+:: Do you want to cancel the current operation
+:: and upgrade these packages now? [Y/n]
+   #+end_example
+6. [X] To facilitate upgrading glibc 2.16, add [openvz-glibc-2.16-tdw] repository to [[/etc/pacman.conf]]
+   [[file://ssh:root@shilohsystem.com:/etc/pacman.conf]]
+   #+begin_src sh
+   [openvz-glibc-2.16-tdw]
+   Server = http://troywill.info/openvz-tdw/i686
+   #+end_src
+7. [X] Run `pacman --sync --refresh` to refresh package lists
+8. [X] Run `pacman --sync --force pacman` to upgrade pacman
+   - Explanation: pacman requires glibc 2.15, which will trigger a file conflict warning. Thus we use the --force flag.
+   This is what I get with `pacman --sync pacman`
+   #+begin_example
+   error: failed to commit transaction (conflicting files)
+   glibc: /lib exists in filesystem
+   glibc: /usr/bin/tzselect exists in filesystem
+   glibc: /usr/sbin/zdump exists in filesystem
+   glibc: /usr/sbin/zic exists in filesystem
+   Errors occurred, no packages were upgraded.
+   #+end_example
+   From several months ago:
+   #+begin_example
+   Targets (19): linux-api-headers-3.4.4-1  glibc-2.15-20120425  xz-5.0.4-1  libarchive-3.0.4-1  run-parts-4.3.2-1  ca-certificates-20120623-1  
+            libssh2-1.4.2-1  curl-7.26.0-1  pth-2.0.7-4  libksba-1.2.0-1  libassuan-2.0.3-1  pinentry-0.8.1-4  libsasl-2.1.23-9  
+            libldap-2.4.31-4  dirmngr-1.1.0-4  gnupg-2.0.19-2  gpgme-1.3.1-4  archlinux-keyring-20120622-1  pacman-4.0.3-3  
+   #+end_example
+   Today:
+   #+begin_example
+[root@shilohsystem ~]# pacman --sync --force pacman
+resolving dependencies...
+looking for inter-conflicts...
+
+Targets (19): linux-api-headers-3.6.3-1  glibc-2.16.0-121112  xz-5.0.4-1  libarchive-3.0.4-2  run-parts-4.3.4-1  
+              ca-certificates-20121105-1  libssh2-1.4.2-1  curl-7.28.0-1  pth-2.0.7-4  libksba-1.2.0-1  libassuan-2.0.3-1  
+              pinentry-0.8.2-1  libsasl-2.1.23-9  libldap-2.4.33-1  dirmngr-1.1.0-4  gnupg-2.0.19-2  gpgme-1.3.1-4  
+              archlinux-keyring-20121113-1  pacman-4.0.3-3  
+
+Total Download Size:    0.00 MB
+Total Installed Size:   61.54 MB
+
+Proceed with installation? [Y/n] 
+   #+end_example
+   Results in a broken system ;-(.
+   #+begin_example
+checking package integrity...
+( 1/19) upgrading linux-api-headers                 [#################################################################################] 100%
+( 2/19) upgrading glibc                             [#################################################################################] 100%
+warning: /etc/locale.gen installed as /etc/locale.gen.pacnew
+error: extract: not overwriting dir with file lib
+error: problem occurred while upgrading glibc
+error: command failed to execute correctly
+( 3/19) upgrading xz                                [#################################################################################] 100%
+( 4/19) upgrading libarchive                        [#################################################################################] 100%
+( 5/19) installing run-parts                        [#################################################################################] 100%
+( 6/19) installing ca-certificates                  [#################################################################################] 100%
+error: command failed to execute correctly
+( 7/19) installing libssh2                          [#################################################################################] 100%
+( 8/19) installing curl                             [#################################################################################] 100%
+( 9/19) installing pth                              [#################################################################################] 100%
+(10/19) installing libksba                          [#################################################################################] 100%
+error: command failed to execute correctly
+(11/19) installing libassuan                        [#################################################################################] 100%
+error: command failed to execute correctly
+(12/19) installing pinentry                         [#################################################################################] 100%
+error: command failed to execute correctly
+Optional dependencies for pinentry
+    gtk2: for gtk2 backend
+    qt: for qt4 backend
+(13/19) installing libsasl                          [#################################################################################] 100%
+(14/19) installing libldap                          [#################################################################################] 100%
+(15/19) installing dirmngr                          [#################################################################################] 100%
+error: command failed to execute correctly
+(16/19) installing gnupg                            [#################################################################################] 100%
+error: command failed to execute correctly
+Optional dependencies for gnupg
+    curl: gpg2keys_curl
+    libldap: gpg2keys_ldap
+    libusb-compat: scdaemon
+    texinfo: documentation
+(17/19) installing gpgme                            [#################################################################################] 100%
+error: command failed to execute correctly
+(18/19) installing archlinux-keyring                [#################################################################################] 100%
+error: command failed to execute correctly
+(19/19) upgrading pacman                            [#################################################################################] 100%
+warning: /etc/pacman.conf installed as /etc/pacman.conf.pacnew
+error: command failed to execute correctly
+error: command failed to execute correctly
+   #+end_example
+9. [X] Run `pacman-db-upgrade` to update the pacman database format
+10. [X] Copy /etc/pacman.conf.pacnew to /etc/pacman.conf
+    #+begin_src sh
+    cp /etc/pacman.conf.pacnew /etc/pacman.conf
+    #+end_src
+11. [X] Run  `pacman-key --init; pacman-key --populate archlinux`
+	to import the data required by pacman for package verification.
+	See: https://www.archlinux.org/news/having-pacman-verify-packages
+12. [X] Edit pacman.conf to temporarily turn off package signing
+    Explanation: pacman will crash with package signing without upgrading an (not yet known) library with
+    this error: `pacman: symbol lookup error: /usr/lib/libgpgme.so.11: undefined symbol: gpg_err_set_errno`
+    [[file://ssh:root@shilohsystem.com:/etc/pacman.conf]]
+    #+begin_example
+    # SigLevel = PackageRequired
+    SigLevel = Never
+    #+end_example
+13. [X] Add [openvz-tdw] repository /etc/pacman.conf
+    [[file://ssh:root@shilohsystem.com:/etc/pacman.conf]]
+    #+begin_src sh
+[openvz-tdw]
+Server = http://packages.shilohsystem.com/openvz-tdw/$arch
+    #+end_src
+14. [X] Run `pacman --sync --refresh` again to refresh package lists
+15. [X] Run `pacman --sync --force initscripts` to upgrade the initscripts package
+    ( See https://www.archlinux.org/news/initscripts-update-manual-intervention-required/ for details )
+16. [X] Run `pacman --sync --force filesystem` to upgrade the filesystem package
+	( See http://www.archlinux.org/news/filesystem-upgrade-manual-intervention-required/ for details )
+    NOTE 1: inaccurate error message => `error: extract: not overwriting dir with file var/run
+          error: problem occurred while upgrading filesystem
+          error: could not commit transaction
+          error: failed to commit transaction (transaction aborted)
+          Errors occurred, no packages were upgraded.`
+	  In fact, the package was upgraded, which can be shown with pacman -Q filesystem
+    NOTE 2: `pacman --sync --force filesystem` may hang. Wait a while, kill with Ctrl-C if neccessary,
+          and rerun pacman --sync --force filesystem
+17. [X] Run `pacman --sync --force krb5`
+18. [X] Run `pacman --sync --nodeps binutils gcc-libs` ( See [[https://wiki.archlinux.org/index.php/DeveloperWiki:usrlib]]un )
+19. [ ] Run `pacman --sync --sysupgrade --ignore glibc`
+    - :: Replace libusb with core/libusbx? [Y/n]
+    - :: Replace mailx with core/heirloom-mailx? [Y/n]
+    - :: Replace procps with core/procps-ng? [Y/n]
+    - :: Replace sqlite3 with extra/sqlite? [Y/n]
+    error: failed to commit transaction (conflicting files)
+    glibc: /lib exists in filesystem
+20. [ ] Run `pacman --sync util-linux`
+21. [ ] Run `pacman --sync --sysupgrade`
+22. [ ] Run `pacman --sync inetutils`
+23. [ ] Run `pacman --sync base-devel sudo emacs-nox rsync git`
+24. [ ] Run `adduser NEWUSER`
+25. [ ] Reboot
 * New Install ( Friday, July 20, 2012 )
 1. [X] Install Arch Linux ([[http://manage.virpus.com/login.php]])
 2. [X] Set root password
@@ -912,16 +1094,14 @@ pacman -S inetutils
 1. [[http://wiki.openvz.org/Archlinux_Template_creation][http://wiki.openvz.org/Archlinux_Template_creation]]
 2. [[https://wiki.archlinux.org/index.php/VPS#Old_kernel_and_a_broken_system_with_OpenVZ][https://wiki.archlinux.org/index.php/VPS#Old_kernel_and_a_broken_system_with_OpenVZ]]
 3. [[https://bbs.archlinux.org/viewtopic.php?pid=1044707][https://bbs.archlinux.org/viewtopic.php?pid=1044707]]
-** Secondary documentation
-1. [[http://wiki.gotux.net/archlinux/tutorials/openvz-vps-install][http://wiki.gotux.net/archlinux/tutorials/openvz-vps-install]]
 * Developer Notes
 ** How to make a glibc package
-1. [ ] install abs (pacman --sync abs)
-2. [ ] run abs ( /usr/bin/abs )
-3. [ ] copy /var/abs/glibc to a build directory
-4. [ ] change pkgrel variable in PKGBUILD
-5. [ ] change --enable-kernel flag in PKGBUILD to 2.6.18
-6. [ ] run makepkg PKGBUILD
+1. [X] install abs (pacman --sync abs)
+2. [X] run abs ( /usr/bin/abs )
+3. [X] copy /var/abs/core/glibc to a build directory
+4. [X] change pkgrel variable in PKGBUILD
+5. [X] change --enable-kernel flag in PKGBUILD to 2.6.18
+6. [ ] run makepkg
 ** How to set up a custom repository
 [openvz-tdw]
 Server = http://packages.shilohsystem.com/openvz-tdw
